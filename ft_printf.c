@@ -92,7 +92,7 @@ int main() {
 
     ft_printf("my ft Character (c): %c\n", c);
     ft_printf("my ft String null (s): %s\n", str);
-    ft_printf("my string (s); %s\n", str1);
+    ft_printf("my ft string (s); %s\n", str1);
     ft_printf("my ft Decimal (d): %d\n", d);
     ft_printf("my ft Hexadecimal (x): %x\n", u);
     ft_printf("my ft Hexadecimal (X): %X\n", u);

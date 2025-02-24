@@ -25,9 +25,11 @@ int	ft_printstr(char *c)
 
 	i = 0;
 	count = 0;
-	if (c == NULL);
+	if (c == NULL)
+	{
 		write(1, "(null)", 6);
 		return (count);
+	}
 	while (c[i] != '\0')
 	{
 		write(1, &c[i], 1);
