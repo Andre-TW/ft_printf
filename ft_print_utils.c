@@ -14,12 +14,8 @@
 
 int	ft_printchar(int c)
 {
-	int	count;
-
-	count = 0;
 	write(1, &c, 1);
-	count++;
-	return (count);
+	return (1);
 }
 
 int	ft_printstr(char *c)
@@ -29,6 +25,9 @@ int	ft_printstr(char *c)
 
 	i = 0;
 	count = 0;
+	if (c == NULL);
+		write(1, "(null)", 6);
+		return (count);
 	while (c[i] != '\0')
 	{
 		write(1, &c[i], 1);
@@ -40,44 +39,36 @@ int	ft_printstr(char *c)
 
 int	ft_printdigit(long n, int base)
 {
-	int		count;
+	int	count;
 	char	*sb;
 
 	sb = "0123456789abcdef";
 	if (n < 0)
 	{
 		write (1, "-", 1);
-		count += 1;
-		return (ft_printdigit(-n, base));
+		return (ft_printdigit(-n, base) + 1);
 	}
 	else if (n < base)
-		count += ft_printchar(sb[n]);
+		return (ft_printchar(sb[n]));
 	else
 	{
-		count += ft_printdigit(n / base, base);
-		count += ft_printchar(sb[n % base]);
+		count = ft_printdigit(n / base, base);
+		return (count + ft_printchar(sb[n % base]));
 	}
-	return (count);
 }
 
 int	ft_printdigitup(long n, int base)
 {
-	int		count;
+	int	count;
 	char	*sb;
 
 	sb = "0123456789ABCDEF";
-	if (n < 0)
-	{
-		write (1, "-", 1);
-		count += 1;
-		return (ft_printdigit(-n, base));
-	}
-	else if (n < base)
-		count += ft_printchar(sb[n]);
+
+	if (n < base)
+		return (ft_printchar(sb[n]));
 	else
 	{
-		count += ft_printdigit(n / base, base);
-		count += ft_printchar(sb[n % base]);
+		count = ft_printdigitup(n / base, base);
+		return (count + ft_printchar(sb[n % base]));
 	}
-	return (count);
 }

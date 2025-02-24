@@ -30,9 +30,12 @@ int	print_format(char spec, va_list ap)
 	else if (spec == 'X')
 		count += ft_printdigitup((long)va_arg(ap, unsigned int), 16);
 	else if (spec == 'i')
-		count += ft_printdigit((long)va_arg(ap, unsigned int), 10);
+		count += ft_printdigit((long)va_arg(ap, int), 10);
 	else if (spec == 'p')
-		count += ft_printdigit((long)va_arg(ap, unsigned int), 16);
+	{	
+		count += write(1, "0x", 2);
+		count += ft_printdigit((long)va_arg(ap, void *), 16);
+	}
 	else if (spec == 'u')
 		count += ft_printdigit((long)va_arg(ap, unsigned int), 10);
 	else
@@ -50,7 +53,10 @@ int	ft_printf(const char *arg, ...)
 	while (*arg)
 	{
 		if (*arg == '%')
+		{	
 			count += print_format(*(++arg), ap);
+			++arg;
+		}
 		else
 		{
 			count += write(1, arg, 1);
@@ -60,15 +66,43 @@ int	ft_printf(const char *arg, ...)
 	va_end(ap);
 	return (count);
 }
+#include <stdio.h>
 
-int main()
-{
-	int count;
-	char *tst;
+int main() {
+    char c = 'A';
+    char *str = NULL;
+    char str1[] = "test";
+    int d = 42;
+    unsigned int u = 255;
+    int i = -42;
+    void *p = &c;
 
-	tst = "ab";
-	count = 14121415;
+    // Testing the format specifiers
+    printf("Character (c): %c\n", c);
+    printf("String null (s): %s\n", str);
+    printf("string (s); %s\n", str1);
+    printf("Decimal (d): %d\n", d);
+    printf("Hexadecimal (x): %x\n", u);
+    printf("Hexadecimal (X): %X\n", u);
+    printf("Percentage (%%): %%\n");
+    printf("Integer (i): %i\n", i);
+    printf("Pointer (p): %p\n", p);
+    printf("Unsigned (u): %u\n", u);
 
-	ft_printf("aqui sei la %X\n", count);
 
+    ft_printf("my ft Character (c): %c\n", c);
+    ft_printf("my ft String null (s): %s\n", str);
+    ft_printf("my string (s); %s\n", str1);
+    ft_printf("my ft Decimal (d): %d\n", d);
+    ft_printf("my ft Hexadecimal (x): %x\n", u);
+    ft_printf("my ft Hexadecimal (X): %X\n", u);
+    ft_printf("my ft Percentage (%%): %%\n");
+    ft_printf("my ft Integer (i): %i\n", i);
+    ft_printf("my ft Pointer (p): %p\n", p);
+    ft_printf("my ft Unsigned (u): %u\n", u);
+
+
+    return 0;
 }
+
+
