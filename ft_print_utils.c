@@ -6,7 +6,7 @@
 /*   By: andsoare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:24:46 by andsoare          #+#    #+#             */
-/*   Updated: 2025/02/23 15:53:13 by andsoare         ###   ########.fr       */
+/*   Updated: 2025/02/25 14:57:15 by andsoare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_printstr(char *c)
 	if (c == NULL)
 	{
 		write(1, "(null)", 6);
-		return (count);
+		return (-11);
 	}
 	while (c[i] != '\0')
 	{
@@ -41,7 +41,7 @@ int	ft_printstr(char *c)
 
 int	ft_printdigit(long n, int base)
 {
-	int	count;
+	int		count;
 	char	*sb;
 
 	sb = "0123456789abcdef";
@@ -61,11 +61,10 @@ int	ft_printdigit(long n, int base)
 
 int	ft_printdigitup(long n, int base)
 {
-	int	count;
+	int		count;
 	char	*sb;
 
 	sb = "0123456789ABCDEF";
-
 	if (n < base)
 		return (ft_printchar(sb[n]));
 	else
