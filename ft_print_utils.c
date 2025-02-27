@@ -26,10 +26,7 @@ int	ft_printstr(char *c)
 	i = 0;
 	count = 0;
 	if (c == NULL)
-	{
-		write(1, "(null)", 6);
-		return (-11);
-	}
+		return (write(1, "(null)", 6));
 	while (c[i] != '\0')
 	{
 		write(1, &c[i], 1);
@@ -65,6 +62,7 @@ int	ft_printdigitup(long n, int base)
 	char	*sb;
 
 	sb = "0123456789ABCDEF";
+
 	if (n < base)
 		return (ft_printchar(sb[n]));
 	else
@@ -73,3 +71,17 @@ int	ft_printdigitup(long n, int base)
 		return (count + ft_printchar(sb[n % base]));
 	}
 }
+
+int     ft_printpointer(void *p, int base)
+{
+        int	count;
+	long	ptr;
+
+	ptr = (unsigned long) p;
+	count = 0;
+	if (p == NULL)
+		return (ft_printstr("(nil)"));
+	count += ft_printstr("0x");
+	count += ft_printdigit(ptr, 16);
+	return (count);
+}	
