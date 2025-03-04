@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_print_utils1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andsoare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 15:24:18 by andsoare          #+#    #+#             */
-/*   Updated: 2025/03/04 16:45:09 by andsoare         ###   ########.fr       */
+/*   Created: 2025/03/04 16:37:22 by andsoare          #+#    #+#             */
+/*   Updated: 2025/03/04 16:42:51 by andsoare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <unistd.h>
-# include <stdarg.h>
+int	ft_printteste(unsigned long n, int base)
+{
+	int		count;
+	char	*sb;
 
-int		ft_print_format(char spec, va_list ap);
-int		ft_printf(const char *arg, ...);
-int		ft_printchar(int c);
-int		ft_printstr(char *c);
-int		ft_printteste(unsigned long n, int base);
-int		ft_printdigit(long n, int base);
-int		ft_printdigitup(long n, int base);
-int		ft_printpointer(void *p, int base);
-
-#endif
+	sb = "0123456789abcdef";
+	if (n < (unsigned int) base)
+		return (ft_printchar(sb[n]));
+	else
+	{
+		count = ft_printdigit(n / base, base);
+		return (count + ft_printchar(sb[n % base]));
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: andsoare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:24:46 by andsoare          #+#    #+#             */
-/*   Updated: 2025/02/25 14:57:15 by andsoare         ###   ########.fr       */
+/*   Updated: 2025/03/04 16:43:21 by andsoare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	ft_printdigitup(long n, int base)
 	char	*sb;
 
 	sb = "0123456789ABCDEF";
-
 	if (n < base)
 		return (ft_printchar(sb[n]));
 	else
@@ -72,16 +71,16 @@ int	ft_printdigitup(long n, int base)
 	}
 }
 
-int     ft_printpointer(void *p, int base)
+int	ft_printpointer(void *p, int base)
 {
-        int	count;
-	long	ptr;
+	int				count;
+	unsigned long	ptr;
 
 	ptr = (unsigned long) p;
 	count = 0;
 	if (p == NULL)
 		return (ft_printstr("(nil)"));
 	count += ft_printstr("0x");
-	count += ft_printdigit(ptr, 16);
+	count += ft_printteste(ptr, base);
 	return (count);
-}	
+}
